@@ -1,4 +1,5 @@
 var $parcel$modules = {};
+var $parcel$modules$init = {};
 
 /* eslint-disable no-undef */
 var globalObject =
@@ -13,8 +14,14 @@ var globalObject =
     : {};
 /* eslint-enable no-undef */
 
+globalObject.$parcel$modules = $parcel$modules;
+globalObject.$parcel$modules$init = $parcel$modules$init;
+
 globalObject.parcelRequire = function(name) {
   if (name in $parcel$modules) {
+    if ($parcel$modules$init[name]) {
+      $parcel$modules$init[name]();
+    }
     return $parcel$modules[name];
   }
 
@@ -29,6 +36,9 @@ globalObject.parcelRequire = function(name) {
   throw err;
 };
 
-globalObject.parcelRequire.register = function register(id, exports) {
+globalObject.parcelRequire.register = function register(id, exports, init) {
   $parcel$modules[id] = exports;
+  if (init) {
+    $parcel$modules$init[id] = init;
+  }
 };
