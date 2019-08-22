@@ -450,7 +450,7 @@ export type CreateBundleOpts =
   // be provided.
   | {|
       id: string,
-      entryAsset?: Asset,
+      entryAsset?: ?Asset,
       target: Target,
       isEntry?: ?boolean,
       type: string,
