@@ -369,6 +369,18 @@ describe('scope hoisting', function() {
       assert.deepEqual(output, 123);
     });
 
+    it('supports optimizing away an unused ES6 re-export with imports', async function() {
+      let b = await bundle(
+        path.join(
+          __dirname,
+          '/integration/scope-hoisting/es6/side-effects-re-exports2/a.js'
+        )
+      );
+
+      let output = await run(b);
+      assert.deepEqual(output, 123);
+    });
+
     it('keeps side effects by default', async function() {
       let b = await bundle(
         path.join(
